@@ -3,30 +3,20 @@
 
     function renderApplications() {
         const applications = loadApplications();
+        let appTemplate = document.querySelector('template').content.querySelector('.c-packs__item');
 
         applications.forEach((application) => {
-           let appEl = document.createElement('li');
-           let linkEl = document.createElement('a');
-           let coverEl = document.createElement('div');
-           let imgEl = document.createElement('img');
-           let titleEl = document.createElement('div');
-           let dateEl = document.createElement('time');
-           appEl.classList.add('c-packs__item');
-           linkEl.classList.add('c-packs__link', 'o-pack');
+           let appEl = appTemplate.cloneNode(true);
+           let linkEl = appEl.querySelector('.c-packs__link');
+           let imgEl = appEl.querySelector('.o-pack__img');
+           let titleEl = appEl.querySelector('.o-pack__title');
+           let dateEl = appEl.querySelector('.o-pack__date');
+
            linkEl.href = application.link;
-           coverEl.classList.add('o-pack__cover');
-           imgEl.classList.add('o-pack__img');
            imgEl.src = application.image;
-           coverEl.appendChild(imgEl);
-           linkEl.appendChild(coverEl);
-           titleEl.classList.add('o-pack__title');
            titleEl.innerHTML = application.title;
-           linkEl.appendChild(titleEl);
-           dateEl.classList.add('o-pack__date');
            dateEl.innerHTML = formatDate(application.date);
            dateEl.dateTime = application.date.toISOString();
-           linkEl.appendChild(dateEl);
-           appEl.appendChild(linkEl);
            document.querySelector('.c-packs__list').appendChild(appEl);
         });
     }
@@ -82,9 +72,6 @@
     function getRandomNumber(min , max) {
         let randomNumber = Math.random() * (max - min) + min;
         return Math.floor(randomNumber);
-    }
-    function getRandomElement(array) {
-        return array[getRandomNumber(0,array.length)];
     }
     function getUniqueRandomElement(array, quantity) {
         let numbers = [];
