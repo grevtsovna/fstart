@@ -11,12 +11,13 @@
            let imgEl = appEl.querySelector('.o-pack__img');
            let titleEl = appEl.querySelector('.o-pack__title');
            let dateEl = appEl.querySelector('.o-pack__date');
+           let date = new Date(application.date);
 
            linkEl.href = application.link;
            imgEl.src = application.image;
            titleEl.innerHTML = application.title;
-           dateEl.innerHTML = formatDate(application.date);
-           dateEl.dateTime = application.date.toISOString();
+           dateEl.innerHTML = formatDate(date);
+           dateEl.dateTime = date.toISOString();
            document.querySelector('.c-packs__list').appendChild(appEl);
         });
     }
@@ -34,37 +35,37 @@
                 link: '#',
                 title: 'Стандартный пакет',
                 image: 'assets/img/packs/pack_1.jpg',
-                date: new Date(2018, 3, 8)
+                date: '2018-04-08'
             },
             {
                 link: '#1',
                 title: 'Новый ЦФТ-Банк',
                 image: 'assets/img/packs/pack_2.jpg',
-                date: new Date(2016, 8, 9)
+                date: '2016-09-09'
             },
             {
                 link: '#2',
                 title: 'Каталог разработок',
                 image: 'assets/img/packs/pack_3.jpg',
-                date: new Date(2015, 2, 3)
+                date: '2015-01-03'
             },
             {
                 link: '#3',
                 title: 'Финансовый мониторинг',
                 image: 'assets/img/packs/pack_1.jpg',
-                date: new Date(2018, 3, 8)
+                date: '2017-05-23'
             },
             {
                 link: '#4',
                 title: 'Бухгалтерский учет',
                 image: 'assets/img/packs/pack_2.jpg',
-                date: new Date(2016, 8, 9)
+                date: '2002-11-20'
             },
             {
                 link: '#5',
                 title: 'Финансовый мониторинг',
                 image: 'assets/img/packs/pack_3.jpg',
-                date: new Date(2015, 2, 3)
+                date: '2009-10-23'
             }
         ];
         return getUniqueRandomElement(applications, 3);
