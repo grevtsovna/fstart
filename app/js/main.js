@@ -1,6 +1,6 @@
 (function () {
     renderApplications();
-
+    slider('.c-packs__list');
     function renderApplications() {
         const applications = loadApplications();
         let appTemplate = document.querySelector('template').content.querySelector('.c-packs__item');
@@ -68,7 +68,7 @@
                 date: '2009-10-23'
             }
         ];
-        return getUniqueRandomElement(applications, 3);
+        return getUniqueRandomElement(applications, 4);
     }
     function getRandomNumber(min , max) {
         let randomNumber = Math.random() * (max - min) + min;
@@ -83,7 +83,6 @@
                 numbers.push(randomNumber);
             }
         }
-        console.log(numbers);
         numbers.forEach((number) => {
             elements.push(array[number]);
         });
