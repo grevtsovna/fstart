@@ -1,9 +1,9 @@
-const utils = {
-    getRandomNumber: function (min, max) {
+export function getRandomNumber(min, max) {
     let randomNumber = Math.random() * (max - min) + min;
     return Math.floor(randomNumber);
-},
-getUniqueRandomElement: function (array, quantity) {
+}
+
+export function getUniqueRandomElement(array, quantity) {
     let numbers = [];
     let elements = [];
     while (numbers.length < quantity) {
@@ -16,8 +16,9 @@ getUniqueRandomElement: function (array, quantity) {
         elements.push(array[number]);
     });
     return elements;
-},
-formatDate: function (date) {
+}
+
+export function formatDate(date) {
     const monthList = ['января', 'Февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
     let dateString = '';
     dateString += date.getDate();
@@ -25,6 +26,3 @@ formatDate: function (date) {
     dateString += ' ' + date.getFullYear();
     return dateString;
 }
-};
-
-export {utils as default};

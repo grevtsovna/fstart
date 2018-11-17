@@ -1,5 +1,5 @@
 import * as load from './load.js';
-import utils from './utils.js';
+import * as utils from './utils.js';
 import render from './render.js';
 
 
