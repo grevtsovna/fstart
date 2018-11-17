@@ -822,3 +822,57 @@ body {
 .l-content {
 	margin-left: 394px;
 }
+
+.preloader-chasing-squares {
+	width: 40px;
+	height: 40px;
+    font-size: 0;
+    margin: 0 auto;
+}
+
+.preloader-chasing-squares .square {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	opacity: 1;
+	background: #666;
+}
+
+.preloader-chasing-squares .square {
+	animation: focusfade 0.4s infinite;
+}
+
+.preloader-chasing-squares .square:nth-child(1) {}
+
+.preloader-chasing-squares .square:nth-child(2) {
+	animation-delay: .1s;
+}
+
+.preloader-chasing-squares .square:nth-child(3) {
+	animation-delay: .3s;
+}
+
+.preloader-chasing-squares .square:nth-child(4) {
+	animation-delay: .2s;
+}
+
+@keyframes focusfade {
+	0% {
+		opacity: 0.5;
+		background: #000;
+	}
+	30% {
+		opacity: 0.5;
+		background: #666;
+	}
+	60% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.5;
+		background: #000;
+	}
+}
