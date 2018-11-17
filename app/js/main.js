@@ -1,6 +1,6 @@
 (function () {
     renderApplications();
-    slider('.c-packs__list');
+    slider.initialize('.c-packs__list');
     function renderApplications() {
         const applications = loadApplications();
         let appTemplate = document.querySelector('template').content.querySelector('.c-packs__item');
