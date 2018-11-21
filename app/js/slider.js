@@ -1,3 +1,11 @@
+export class Slider {
+    constructor(element) {
+        console.log(element);
+    }
+}
+
+/*let viewport = document.querySelector(selector);
+
 (function () {
 
     window.slider = {
@@ -25,3 +33,14 @@
         }
     };
 })();
+*/
+/*
+export function Slider(selector) {
+    this.initialize();
+}
+*/
+
+/*
+Slider.prototype.initialize = function () {
+    console.log(this.selector);
+};*/
