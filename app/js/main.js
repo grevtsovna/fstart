@@ -7,6 +7,6 @@ load.loadApps(apps => {
     setTimeout(() => {
         render.sliderApps(apps);
         preloader.remove();
-        let appSlider = new slider.Slider(document.querySelector('.c-packs__list'));
+        let appSlider = new slider.Slider('.c-packs__list');
     }, 1000);
 });
