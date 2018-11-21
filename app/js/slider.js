@@ -9,6 +9,8 @@ export class Slider {
         this.slides = this.viewport.querySelectorAll('li');
         this.slideWidth = this.slides[0].offsetWidth;
 
+        this.currentPosition = 0;
+
         this.carouselContainer = document.createElement('div');
         this.carouselContainer.classList.add('carousel-container');
         this.carouselContainer.style.whiteSpace = 'nowrap';
@@ -17,6 +19,11 @@ export class Slider {
         });
 
         this.viewport.appendChild(this.carouselContainer);
+    }
+
+    _nextSlide() {
+        this.currentPosition += this.slideWidth;
+        this.viewport.style.left = this.currentPosition + 'px';
     }
 }
 
