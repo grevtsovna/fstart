@@ -19,11 +19,22 @@ export class Slider {
         });
 
         this.viewport.appendChild(this.carouselContainer);
+
+        this._renderControls();
     }
 
     _nextSlide() {
-        this.currentPosition += this.slideWidth;
-        this.viewport.style.left = this.currentPosition + 'px';
+        this.currentPosition -= this.slideWidth;
+        this.carouselContainer.style.left = this.currentPosition + 'px';
+        console.log('currentPosition:' + this.currentPosition);
+    }
+    _renderControls() {
+        let next = document.createElement('div');
+        next.innerHTML = 'next';
+        next.addEventListener('click', () => {
+            this._nextSlide();
+        });
+        this.viewport.insertAdjacentElement('beforebegin', next);
     }
 }
 

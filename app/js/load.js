@@ -7,7 +7,7 @@ export function loadApps(loadHandler) {
     xhr.send();
     xhr.onload = function() {
         let apps = JSON.parse(xhr.responseText);
-        let cutApps = utils.getUniqueRandomElement(apps, 3);
+        let cutApps = utils.getUniqueRandomElement(apps, 6);
         loadHandler(cutApps);
     };
 }
