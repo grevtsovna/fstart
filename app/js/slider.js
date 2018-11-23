@@ -21,6 +21,7 @@ export class Slider {
         this.viewport.appendChild(this.carouselContainer);
 
         this._renderControls();
+        this._renderControlDot();
     }
     _goToSlide(position) {
         this.currentPosition = position;
@@ -57,7 +58,18 @@ export class Slider {
         this.viewport.insertAdjacentElement('beforebegin', prev);
         this.viewport.insertAdjacentElement('beforebegin', next);
     }
-    _calculatePosition() {
+    _renderControlDot() {
+        let dotContainer = document.createElement('div');
+        dotContainer.classList.add('dots-container');
+        for (let i = 0; i < this.slides.length; i++) {
+            let dot = document.createElement('span');
+            dot.classList.add('carousel-dot');
+            dot.addEventListener('click', () => {
+               this._goToSlide(i);
+            });
+            dotContainer.appendChild(dot);
+        }
 
+        this.viewport.insertAdjacentElement('beforebegin', dotContainer);
     }
 }

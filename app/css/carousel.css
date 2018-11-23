@@ -3,3 +3,10 @@
     position: relative;
     transition: transform 1000ms;
 }
+.carousel-dot {
+    display: inline-block;
+    margin: 0 2px;
+    width: 20px;
+    height: 20px;
+    background: #000;
+}
