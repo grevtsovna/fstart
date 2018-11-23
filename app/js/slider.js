@@ -74,6 +74,6 @@ export class Slider {
             dotContainer.appendChild(dot);
         }
 
-        this.viewport.insertAdjacentElement('beforebegin', dotContainer);
+        this.viewport.insertAdjacentElement('beforeend', dotContainer);
     }
 }
