@@ -24,8 +24,20 @@ export class Slider {
     }
 
     _nextSlide() {
-        this.currentPosition -= this.slideWidth;
-        this.carouselContainer.style.left = this.currentPosition + 'px';
+        this.currentPosition++;
+        if (this.currentPosition > this.slides.length - 3) {
+            this.currentPosition = 0;
+        }
+        this.carouselContainer.style.transform = `translateX(-${this.currentPosition * this.slideWidth}px)`;
+        console.log('currentPosition:' + this.currentPosition);
+    }
+
+    _prevSlide() {
+        this.currentPosition--;
+        if (this.currentPosition < 0) {
+            this.currentPosition = this.slides.length - 3;
+        }
+        this.carouselContainer.style.transform = `translateX(-${this.currentPosition * this.slideWidth}px)`;
         console.log('currentPosition:' + this.currentPosition);
     }
     _renderControls() {
@@ -34,47 +46,15 @@ export class Slider {
         next.addEventListener('click', () => {
             this._nextSlide();
         });
+        let prev = document.createElement('div');
+        prev.innerHTML = 'prev';
+        prev.addEventListener('click', () => {
+            this._prevSlide();
+        });
+        this.viewport.insertAdjacentElement('beforebegin', prev);
         this.viewport.insertAdjacentElement('beforebegin', next);
     }
+    _calculatePosition() {
+
+    }
 }
-
-/*let viewport = document.querySelector(selector);
-
-(function () {
-
-    window.slider = {
-        viewport: '',
-        carouselContainer: '',
-        slides: '',
-        slideWidth: 0,
-        initialize: function(selector) {
-            this.viewport = document.querySelector(selector);
-            this.viewport.style.overflow = 'hidden';
-            this.slides = this.viewport.querySelectorAll('li');
-            this.slideWidth = this.slides[0].offsetWidth;
-
-            this.carouselContainer = document.createElement('div');
-            this.carouselContainer.classList.add('carousel-container');
-            this.carouselContainer.style.whiteSpace = 'nowrap';
-            this.slides.forEach((slide) => {
-                this.carouselContainer.appendChild(slide);
-            });
-
-            this.viewport.appendChild(this.carouselContainer);
-        },
-        nextSlide: function() {
-            this.carouselContainer.style.transform = `translateX(-${this.slideWidth}px)`
-        }
-    };
-})();
-*/
-/*
-export function Slider(selector) {
-    this.initialize();
-}
-*/
-
-/*
-Slider.prototype.initialize = function () {
-    console.log(this.selector);
-};*/

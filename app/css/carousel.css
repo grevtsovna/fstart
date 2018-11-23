@@ -1,4 +1,5 @@
 .carousel-container {
     white-space: nowrap;
     position: relative;
+    transition: transform 1000ms;
 }
