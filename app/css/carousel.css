@@ -26,3 +26,23 @@
 .carousel-dot_active:hover {
     background: #ED1B2F;
 }
+.slide-control {
+    position: absolute;
+    width: 9px;
+    height: 17px;
+    top: 50%;
+    margin-top: -50px;
+    cursor: pointer;
+    z-index: 1;
+}
+.slide-control__icon {
+    width: 9px;
+    height: 17px;
+}
+.carousel-prev {
+    left: 0;
+    transform: rotate(180deg);
+}
+.carousel-next {
+    right: 0;
+}

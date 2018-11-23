@@ -47,17 +47,19 @@ export class Slider {
     }
     _renderControls() {
         let next = document.createElement('div');
-        next.innerHTML = 'next';
+        next.classList.add('slide-control', 'carousel-next');
+        next.innerHTML = '<svg class="slide-control__icon"><use xlink:href="#right-arrow"></use></svg></div>';
         next.addEventListener('click', () => {
             this._nextSlide();
         });
         let prev = document.createElement('div');
-        prev.innerHTML = 'prev';
+        prev.classList.add('slide-control', 'carousel-prev');
+        prev.innerHTML = '<svg class="slide-control__icon"><use xlink:href="#right-arrow"></use></svg></div>';
         prev.addEventListener('click', () => {
             this._prevSlide();
         });
-        this.viewport.insertAdjacentElement('beforebegin', prev);
-        this.viewport.insertAdjacentElement('beforebegin', next);
+        this.viewport.insertAdjacentElement('afterbegin', prev);
+        this.viewport.insertAdjacentElement('afterbegin', next);
     }
     _renderControlDot() {
         let dotContainer = document.createElement('div');
