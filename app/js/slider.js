@@ -9,7 +9,7 @@ export class Slider {
         this.slides = this.viewport.querySelectorAll('li');
         this.slideWidth = this.slides[0].offsetWidth;
 
-        this.currentPosition = 0;
+        this.currentPosition = 1;
 
         this.carouselContainer = document.createElement('div');
         this.carouselContainer.classList.add('carousel-container');
@@ -22,23 +22,26 @@ export class Slider {
 
         this._renderControls();
     }
+    _goToSlide(position) {
+        this.currentPosition = position;
+        this.carouselContainer.style.transform = `translateX(${this.slideWidth - this.currentPosition * this.slideWidth}px)`;
+        console.log(`Current position: ${this.currentPosition + 1} from ${this.slides.length}`);
+    }
 
     _nextSlide() {
-        this.currentPosition++;
-        if (this.currentPosition > this.slides.length - 3) {
-            this.currentPosition = 0;
+        let position = this.currentPosition + 1;
+        if (position > this.slides.length - 2) {
+            position = 1;
         }
-        this.carouselContainer.style.transform = `translateX(-${this.currentPosition * this.slideWidth}px)`;
-        console.log('currentPosition:' + this.currentPosition);
+        this._goToSlide(position);
     }
 
     _prevSlide() {
-        this.currentPosition--;
-        if (this.currentPosition < 0) {
-            this.currentPosition = this.slides.length - 3;
+        let position = this.currentPosition - 1;
+        if (position < 1) {
+            position = this.slides.length - 2;
         }
-        this.carouselContainer.style.transform = `translateX(-${this.currentPosition * this.slideWidth}px)`;
-        console.log('currentPosition:' + this.currentPosition);
+        this._goToSlide(position);
     }
     _renderControls() {
         let next = document.createElement('div');
