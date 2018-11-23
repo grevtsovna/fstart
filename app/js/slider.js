@@ -26,7 +26,8 @@ export class Slider {
     _goToSlide(position) {
         this.currentPosition = position;
         this.carouselContainer.style.transform = `translateX(${this.slideWidth - this.currentPosition * this.slideWidth}px)`;
-        console.log(`Current position: ${this.currentPosition + 1} from ${this.slides.length}`);
+        document.querySelector('.carousel-dot_active').classList.remove('carousel-dot_active');
+        document.querySelector(`.carousel-dot:nth-child(${this.currentPosition + 1})`).classList.add('carousel-dot_active');
     }
 
     _nextSlide() {
@@ -64,6 +65,9 @@ export class Slider {
         for (let i = 0; i < this.slides.length; i++) {
             let dot = document.createElement('span');
             dot.classList.add('carousel-dot');
+            if (i === this.currentPosition) {
+                dot.classList.add('carousel-dot_active');
+            }
             dot.addEventListener('click', () => {
                this._goToSlide(i);
             });
