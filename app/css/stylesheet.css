@@ -1009,17 +1009,17 @@ body {
     line-height: normal;
     color: #32393d;
 }
-.o-app-content {
+.o-app-info {
     padding: 32px 0 29px;
     font-size: 1.125rem;
     color: #4d5762;
 }
-.o-app-content__list {
+.o-app-info__list {
     padding: 0 0 0 30px;
 }
-.o-app-content__list-item {
+.o-app-info__list-item {
     margin: 0 0 40px;
 }
-.o-app-content__list-item:last-child {
+.o-app-info__list-item:last-child {
     margin: 0;
 }
