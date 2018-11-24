@@ -1,6 +1,7 @@
 import * as load from './load.js';
 import * as render from './render.js';
-import * as slider from './slider.js'
+import * as slider from './slider.js';
+import * as app from './app.js';
 
 if (document.querySelector('body').classList.contains('main')) {
     let preloader = document.querySelector('template').content.querySelector('.preloader-chasing-squares');
@@ -15,5 +16,5 @@ if (document.querySelector('body').classList.contains('main')) {
 }
 
 if (document.querySelector('body').classList.contains('app')) {
-
+    let currentApp = new app.App();
 }

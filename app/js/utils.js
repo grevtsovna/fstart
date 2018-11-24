@@ -26,3 +26,16 @@ export function formatDate(date) {
     dateString += ' ' + date.getFullYear();
     return dateString;
 }
+
+export function getQueryVars() {
+    let stringParams = window.location.search.slice(1).split('&');
+    let paramsObj = {};
+    stringParams.forEach((param) => {
+        let keyValueArr = param.split('=');
+        let key = keyValueArr[0];
+        let value = keyValueArr[1];
+        paramsObj[key] = value;
+    });
+
+    return paramsObj;
+}
