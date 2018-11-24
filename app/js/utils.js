@@ -32,10 +32,16 @@ export function getQueryVars() {
     let paramsObj = {};
     stringParams.forEach((param) => {
         let keyValueArr = param.split('=');
-        let key = keyValueArr[0];
-        let value = keyValueArr[1];
-        paramsObj[key] = value;
+        paramsObj[keyValueArr[0]] = keyValueArr[1];
     });
 
     return paramsObj;
+}
+
+export function delay (timeout) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, timeout)
+    });
 }
