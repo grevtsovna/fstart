@@ -21,14 +21,3 @@ export function getJSON(url) {
         xhr.send();
     });
 }
-
-export function loadSingleApp(id, loadHandler) {
-    const xhr = new XMLHttpRequest();
-    const APPS_URL = `/api/apps/${id}.json`;
-    xhr.open('GET', APPS_URL, true);
-    xhr.send();
-    xhr.onload = function() {
-        let app = JSON.parse(xhr.responseText);
-        loadHandler(app);
-    };
-}
