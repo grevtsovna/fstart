@@ -41,6 +41,7 @@ export class App {
         });
 
         document.querySelector('.l-content__content').appendChild(appEl);
+        document.querySelector('title').innerHTML = `ЦФТ | ${data.title}`;
         if (document.querySelector('.o-list__link_active')) {
             document.querySelector('.o-list__link_active').classList.remove('o-list__link_active');
         }
