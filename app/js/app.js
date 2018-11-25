@@ -10,7 +10,6 @@ export class App {
     _loadApp(id) {
         load.getJSON(`/api/apps/${id}.json`)
             .then(response => {
-                console.log(123);
                 this._renderApp(response)
             }, () => {
                 let errorEl = document.querySelector('template').content.querySelector('.error').cloneNode(true);
@@ -42,5 +41,9 @@ export class App {
         });
 
         document.querySelector('.l-content__content').appendChild(appEl);
+        if (document.querySelector('.o-list__link_active')) {
+            document.querySelector('.o-list__link_active').classList.remove('o-list__link_active');
+        }
+        document.querySelector(`.o-list__link[data-id="${this.appId}"]`).classList.add('o-list__link_active');
     }
 }
