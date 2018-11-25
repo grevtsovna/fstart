@@ -13,10 +13,15 @@ export function getJSON(url) {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
         xhr.onload = () => {
-            resolve(JSON.parse(xhr.responseText));
+            console.log(xhr.status);
+            if (xhr.status === 200) {
+                resolve(JSON.parse(xhr.responseText));
+            } else {
+                reject();
+            }
         };
         xhr.onerror = () => {
-            reject('Error');
+            reject();
         };
         xhr.send();
     });
