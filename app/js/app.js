@@ -15,6 +15,8 @@ export class App {
         let appEl = document.querySelector('template').content.querySelector('.o-app-page').cloneNode(true);
         let date = new Date(+data.date * 1000);
         let header = data.headerText;
+        let appFunctions = data.functions;
+        let functionTemplate = appEl.querySelector('.o-app-info__list-item');
         appEl.querySelector('.o-app-page__title').innerHTML = data.title;
         appEl.querySelector('.o-app-header__date').innerHTML = formatDate(date);
         appEl.querySelector('.o-app-header__licensed').innerHTML = header.licensedText;
@@ -24,6 +26,12 @@ export class App {
         appEl.querySelector('.o-app-header__requirements').innerHTML += header.requirements;
         appEl.querySelector('.o-app-header__img').src = data.image;
         appEl.querySelector('.js-add-to-cart').dataset.id = data.id;
+        appFunctions.forEach((appFunction) => {
+            let appFunctionEl = functionTemplate.cloneNode(true);
+            functionTemplate.remove();
+            appFunctionEl.innerHTML = appFunction;
+            appEl.querySelector('.o-app-info__list').appendChild(appFunctionEl);
+        });
 
         document.querySelector('.l-content__content').appendChild(appEl);
     }
