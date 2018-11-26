@@ -18,10 +18,40 @@
     "date": "2015-01-03"
   },
   {
-    "link": "/app-page.html?id=11",
-    "title": "Финансовый мониторинг",
+    "link": "/app-page.html?id=9",
+    "title": "Расчетный центр",
+    "image": "assets/img/packs/pack_2.jpg",
+    "date": "2002-11-20"
+  },
+  {
+    "link": "/app-page.html?id=4",
+    "title": "Аренда сейфов",
     "image": "assets/img/packs/pack_1.jpg",
-    "date": "2017-05-23"
+    "date": "2018-04-08"
+  },
+  {
+    "link": "/app-page.html?id=5",
+    "title": "Банковские гарантии",
+    "image": "assets/img/packs/pack_2.jpg",
+    "date": "2016-09-09"
+  },
+  {
+    "link": "/app-page.html?id=6",
+    "title": "Казначейство",
+    "image": "assets/img/packs/pack_3.jpg",
+    "date": "2015-01-03"
+  },
+  {
+    "link": "/app-page.html?id=7",
+    "title": "Страхование",
+    "image": "assets/img/packs/pack_1.jpg",
+    "date": "2018-04-08"
+  },
+  {
+    "link": "/app-page.html?id=8",
+    "title": "Факторинговое обслуживание",
+    "image": "assets/img/packs/pack_2.jpg",
+    "date": "2016-09-09"
   },
   {
     "link": "/app-page.html?id=9",
@@ -30,8 +60,26 @@
     "date": "2002-11-20"
   },
   {
+    "link": "/app-page.html?id=9",
+    "title": "Пластиковые карты",
+    "image": "assets/img/packs/pack_2.jpg",
+    "date": "2002-11-20"
+  },
+  {
+    "link": "/app-page.html?id=11",
+    "title": "Финансовый мониторинг",
+    "image": "assets/img/packs/pack_1.jpg",
+    "date": "2017-05-23"
+  },
+  {
     "link": "/app-page.html?id=12",
     "title": "Депозиты и вклады",
+    "image": "assets/img/packs/pack_3.jpg",
+    "date": "2009-10-23"
+  }
+  {
+    "link": "/app-page.html?id=13",
+    "title": "Инвестиции",
     "image": "assets/img/packs/pack_3.jpg",
     "date": "2009-10-23"
   }
