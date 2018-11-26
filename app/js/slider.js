@@ -32,16 +32,16 @@ export class Slider {
 
     _nextSlide() {
         let position = this.currentPosition + 1;
-        if (position > this.slides.length - 2) {
-            position = 1;
+        if (position > this.slides.length - 1) {
+            position = 0;
         }
         this._goToSlide(position);
     }
 
     _prevSlide() {
         let position = this.currentPosition - 1;
-        if (position < 1) {
-            position = this.slides.length - 2;
+        if (position < 0) {
+            position = this.slides.length - 1;
         }
         this._goToSlide(position);
     }
