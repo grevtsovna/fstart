@@ -3,7 +3,9 @@ export class Cart {
         this.apps = JSON.parse(localStorage.getItem('cart')) || [];
         this.cartStick = document.querySelector('#cart-stick').content.querySelector('.cart-stick').cloneNode(true);
         this.quantity = this.getQuantity();
+        this.cartWindow = document.querySelector('.o-modal');
         document.querySelector('body').appendChild(this.cartStick);
+        document.addEventListener('click', this.documentClickHandler.bind(this));
         this._updateCartStick();
     }
     add(id) {
@@ -37,23 +39,28 @@ export class Cart {
         })
         return quantity;
     }
-    static open(selector) {
-        document.querySelector(selector).style.display = 'block';
+    open() {
+        this.cartWindow.style.display = 'block';
         document.querySelector('body').classList.add('u-overlay');
-        document.addEventListener('click', Cart.documentClickHandler);
     }
-    static close() {
-        document.querySelector('.o-modal').style.display = 'none';
+    close() {
+        this.cartWindow.style.display = 'none';
         document.querySelector('body').classList.remove('u-overlay');
-        document.removeEventListener('click', Cart.documentClickHandler);
     }
-    static documentClickHandler(evt) {
+    documentClickHandler(evt) {
         let target = evt.target;
-        let modal =  document.querySelector('.o-modal');
-        let openBtn = document.querySelector('.js-add-to-cart');
-        let isModal = target === modal || modal.contains(target) || target === openBtn;
-        if (!isModal) {
-            Cart.close();
+        let isCartWindow = false;
+        if (target === this.cartStick || this.cartStick.contains(target)) {
+            this.open();
+        }
+        if (target === this.cartWindow ||
+            this.cartWindow.contains(target) ||
+            target === this.cartStick ||
+            this.cartStick.contains(target)) {
+            isCartWindow = true;
+        }
+        if (!isCartWindow) {
+            this.close();
         }
     }
 
