@@ -23,7 +23,11 @@ if (document.querySelector('body').classList.contains('main')) {
 
 if (document.querySelector('body').classList.contains('app')) {
     new App();
-    document.addEventListener('appRendered', () => {
-        console.log('appRendered');
+    document.addEventListener('appRendered', appRenderedHandler)
+}
+
+function appRenderedHandler(evt) {
+    document.querySelector('.js-add-to-cart').addEventListener('click', () => {
+        cart.add(evt.detail.id, 'test');
     })
 }
