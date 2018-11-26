@@ -13,7 +13,7 @@ export class App {
                 this._renderApp(response)
             }, () => {
                 let errorEl = document.querySelector('template').content.querySelector('.error').cloneNode(true);
-                let errorMsg = 'К сожалению, что-то пошло не так. Возможно, такая страница не существует. Вернитесь <a href="/app-page.html">назад</a> и попробуйте еще раз.'
+                let errorMsg = 'К сожалению, что-то пошло не так. Возможно, такая страница не существует. Вернитесь <a href="/app-page.html">назад</a> и попробуйте еще раз.';
                 errorEl.querySelector('.c-text-banner__content').innerHTML = errorMsg;
                 document.querySelector('.l-content__content').appendChild(errorEl);
             });
