@@ -1,17 +1,41 @@
 export class Cart {
     constructor() {
         this.apps = JSON.parse(localStorage.getItem('cart')) || [];
+        this.cartStick = document.querySelector('#cart-stick').content.querySelector('.cart-stick').cloneNode(true);
+        this.quantity = this.getQuantity();
+        document.querySelector('body').appendChild(this.cartStick);
+        this._updateCartStick();
     }
     add(id) {
         let appIsExists = false;
         this.apps.forEach((app) => {
            appIsExists = app.id === id;
+           if (appIsExists) {
+               app.quantity++;
+           }
         });
         if (!appIsExists) {
             this.apps.push({id: id, quantity: 1});
         }
+        this.quantity++;
+        this._updateCartStick();
         localStorage.setItem('cart', JSON.stringify(this.apps));
-        Cart.open('.o-modal');
+        // Cart.open('.o-modal');
+        console.log(this.apps);
+    }
+    _updateCartStick() {
+        let quantityEl = this.cartStick.querySelector('.cart-stick__quantity');
+        if (this.quantity > 0) {
+            quantityEl.innerHTML = this.quantity.toString();
+            quantityEl.classList.add('cart-stick__quantity_visible');
+        }
+    }
+    getQuantity() {
+        let quantity = 0;
+        this.apps.forEach(app => {
+            quantity += app.quantity;
+        })
+        return quantity;
     }
     static open(selector) {
         document.querySelector(selector).style.display = 'block';
