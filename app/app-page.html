@@ -84,6 +84,85 @@
 	</div>
 </div>
 
+<div class="o-modal">
+	<form action="#" class="c-order">
+		<ul class="c-steps">
+			<li class="c-steps__item c-steps__item_blue">
+				Список приложений
+			</li>
+			<li class="c-steps__item">
+				Оплата
+			</li>
+			<li class="c-steps__item">
+				Контактная информация
+			</li>
+			<li class="c-steps__item">
+				Подтверждение
+			</li>
+		</ul>
+		<div class="c-order__step c-order__step_active">
+			<div class="c-cart">
+				<table class="o-cart-table">
+					<thead class="o-cart-table__head">
+					<tr>
+						<th class="o-cart-table__app">Приложение</th>
+						<th class="o-cart-table__price">Стоимость</th>
+						<th class="o-cart-table__quantity"></th>
+						<th class="o-cart-table__total">Итог</th>
+						<th class="o-cart-table__remove"></th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr class="o-cart-row o-cart-table__row">
+						<td class="o-cart-row__app u-clearfix">
+							<div class="o-cart-row__img-container">
+								<img src="img/app_thumbnail_table.jpg" alt="" class="o-cart-row__img">
+							</div>
+							<div class="o-cart-row__content">
+								<h4 class="o-cart-row__title">Новый ЦФТ-Банк</h4>
+								<div class="c-form-group o-cart-row__installation">
+									<label class="c-form-group__label c-form-group__label_control">
+										<input type="checkbox" class="c-form-group__control">
+										<span class="o-control">
+												<svg class="o-control__icon o-control__icon_check"><use xlink:href="#thick-check"></use></svg>
+											</span>
+										<span class="c-form-group__caption">установка и настройка</span>
+									</label>
+								</div>
+							</div>
+						</td>
+						<td class="o-cart-table__price">
+							<div class="o-cart-row__price">$139,99</div>
+						</td>
+						<td>
+							<div class="c-counter-input">
+								<span class="c-counter-input__control c-counter-input__control_minus">-</span>
+								<input class="c-counter-input__input" type="text" name="quantity">
+								<span class="c-counter-input__control c-counter-input__control_plus">+</span>
+							</div>
+						</td>
+						<td class="o-cart-table__total">
+							<div class="o-cart-row__price">$139,99</div>
+						</td>
+						<td>
+								<span class="o-cart-row__remove">
+									<svg class="o-iconset o-iconset_blue"><use xlink:href="#iconset-rubish"></use></svg>
+								</span>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<div class="o-cart__bottom">
+					<div class="o-cart__bottom-item">
+						<span class="o-cart__integer">$549</span>
+						<span class="o-cart__fractional">99</span>
+					</div>
+					<span class="o-btn o-btn_primary o-cart__bottom-item c-order__next">Далее</span>
+				</div>
+			</div>
+	</form>
+</div>
+
 <template>
     <div class="o-app-page">
         <h4 class="o-title o-title_h4 o-app-page__title"></h4>
