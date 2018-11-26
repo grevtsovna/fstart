@@ -11,7 +11,11 @@ export class Cart {
             this.apps.push({id: id, quantity: 1});
         }
         localStorage.setItem('cart', JSON.stringify(this.apps));
-        Cart.open('.o-modal');
+        let addedEvent = new Event('successAddedToCart', {
+            bubbles: true
+        });
+        document.dispatchEvent(addedEvent);
+        // Cart.open('.o-modal');
     }
     static open(selector) {
         document.querySelector(selector).style.display = 'block';

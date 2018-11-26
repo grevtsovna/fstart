@@ -36,6 +36,7 @@ export class App {
         appEl.querySelector('.o-app-header__sku').innerHTML = header.sku;
         appEl.querySelector('.o-app-header__requirements').innerHTML += header.requirements;
         appEl.querySelector('.o-app-header__img').src = data.image;
+        appEl.querySelector('.o-app-header__price').innerHTML = '$' + data.price;
         appEl.querySelector('.js-add-to-cart').dataset.id = data.id;
         appFunctions.forEach((appFunction) => {
             let appFunctionEl = functionTemplate.cloneNode(true);
