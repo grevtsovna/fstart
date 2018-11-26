@@ -8,12 +8,14 @@ export class App {
         this._loadApp(this.appId);
     }
     _loadApp(id) {
-        load.getJSON(`/api/apps/${id}.json`)
+        load.getJSON('/api/apps.json')
+            .then(response => {App._renderSideApps(response)})
+            .then(() => load.getJSON(`/api/apps/${id}.json`))
             .then(response => {
                 this._renderApp(response)
             }, () => {
                 let errorEl = document.querySelector('template').content.querySelector('.error').cloneNode(true);
-                let errorMsg = 'К сожалению, что-то пошло не так. Возможно, такая страница не существует. Вернитесь <a href="/app-page.html">назад</a> и попробуйте еще раз.'
+                let errorMsg = 'К сожалению, что-то пошло не так. Возможно, такая страница не существует. Вернитесь <a href="/app-page.html">назад</a> и попробуйте еще раз.';
                 errorEl.querySelector('.c-text-banner__content').innerHTML = errorMsg;
                 document.querySelector('.l-content__content').appendChild(errorEl);
             });
@@ -36,6 +38,7 @@ export class App {
         appEl.querySelector('.o-app-header__sku').innerHTML = header.sku;
         appEl.querySelector('.o-app-header__requirements').innerHTML += header.requirements;
         appEl.querySelector('.o-app-header__img').src = data.image;
+        appEl.querySelector('.o-app-header__price').innerHTML = '$' + data.price;
         appEl.querySelector('.js-add-to-cart').dataset.id = data.id;
         appFunctions.forEach((appFunction) => {
             let appFunctionEl = functionTemplate.cloneNode(true);
@@ -52,5 +55,17 @@ export class App {
 
         appEl.dispatchEvent(renderedEvent);
         document.querySelector(`.o-list__link[data-id="${this.appId}"]`).classList.add('o-list__link_active');
+    }
+
+    static _renderSideApps(apps) {
+        let appElTemplate = document.querySelector('template').content.querySelector('.o-list__item');
+        apps.forEach((app) => {
+            let appEl = appElTemplate.cloneNode(true);
+            let appLinkEl = appEl.querySelector('.o-list__link');
+            appLinkEl.href = app.link;
+            appLinkEl.innerHTML = app.title;
+            appLinkEl.dataset.id = app.id;
+            document.querySelector('.o-list').appendChild(appEl);
+        });
     }
 }

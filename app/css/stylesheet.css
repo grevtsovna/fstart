@@ -997,6 +997,21 @@ body {
     max-width: 100%;
     margin: 24px 0 0 auto;
 }
+.o-app-header__price {
+    padding: 15px 0 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.o-app-header__success-add {
+    position: absolute;
+    text-align: center;
+    color: var(--success-color);
+    opacity: 0;
+    transition: opacity 200ms;
+}
+.o-app-header__success-add_active {
+    opacity: 1;
+}
 .o-app-header__btn {
     margin: 19px 0 0;
     text-align: center;

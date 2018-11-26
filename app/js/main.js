@@ -23,11 +23,20 @@ if (document.querySelector('body').classList.contains('main')) {
 
 if (document.querySelector('body').classList.contains('app')) {
     new App();
-    document.addEventListener('appRendered', appRenderedHandler)
+    document.addEventListener('appRendered', appRenderedHandler);
+    document.addEventListener('successAddedToCart', addToCartHandler);
 }
 
 function appRenderedHandler(evt) {
     document.querySelector('.js-add-to-cart').addEventListener('click', () => {
         cart.add(evt.detail.id, 'test');
     })
+}
+function addToCartHandler() {
+    let successMsg = document.querySelector('.o-app-header__success-add');
+    successMsg.classList.add('o-app-header__success-add_active');
+    delay(3000)
+        .then(() => {
+            successMsg.classList.remove('o-app-header__success-add_active');
+        });
 }

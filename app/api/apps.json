@@ -1,37 +1,92 @@
 [
   {
+    "id": 1,
     "link": "/app-page.html?id=1",
     "title": "Стандартный пакет",
     "image": "assets/img/packs/pack_1.jpg",
     "date": "2018-04-08"
   },
   {
+    "id": 2,
     "link": "/app-page.html?id=2",
     "title": "Новый ЦФТ-Банк",
     "image": "assets/img/packs/pack_2.jpg",
     "date": "2016-09-09"
   },
   {
+    "id": 3,
     "link": "/app-page.html?id=3",
     "title": "Cash Management",
     "image": "assets/img/packs/pack_3.jpg",
     "date": "2015-01-03"
   },
   {
-    "link": "/app-page.html?id=11",
-    "title": "Финансовый мониторинг",
+    "id": 4,
+    "link": "/app-page.html?id=4",
+    "title": "Аренда сейфов",
     "image": "assets/img/packs/pack_1.jpg",
-    "date": "2017-05-23"
+    "date": "2018-04-08"
   },
   {
+    "id": 5,
+    "link": "/app-page.html?id=5",
+    "title": "Банковские гарантии",
+    "image": "assets/img/packs/pack_2.jpg",
+    "date": "2016-09-09"
+  },
+  {
+    "id": 6,
+    "link": "/app-page.html?id=6",
+    "title": "Казначейство",
+    "image": "assets/img/packs/pack_3.jpg",
+    "date": "2015-01-03"
+  },
+  {
+    "id": 7,
+    "link": "/app-page.html?id=7",
+    "title": "Страхование",
+    "image": "assets/img/packs/pack_1.jpg",
+    "date": "2018-04-08"
+  },
+  {
+    "id": 8,
+    "link": "/app-page.html?id=8",
+    "title": "Факторинговое обслуживание",
+    "image": "assets/img/packs/pack_2.jpg",
+    "date": "2016-09-09"
+  },
+  {
+    "id": 9,
     "link": "/app-page.html?id=9",
     "title": "Расчетный центр",
     "image": "assets/img/packs/pack_2.jpg",
     "date": "2002-11-20"
   },
   {
+    "id": 10,
+    "link": "/app-page.html?id=10",
+    "title": "Пластиковые карты",
+    "image": "assets/img/packs/pack_2.jpg",
+    "date": "2002-11-20"
+  },
+  {
+    "id": 11,
+    "link": "/app-page.html?id=11",
+    "title": "Финансовый мониторинг",
+    "image": "assets/img/packs/pack_1.jpg",
+    "date": "2017-05-23"
+  },
+  {
+    "id": 12,
     "link": "/app-page.html?id=12",
     "title": "Депозиты и вклады",
+    "image": "assets/img/packs/pack_3.jpg",
+    "date": "2009-10-23"
+  },
+  {
+    "id": 13,
+    "link": "/app-page.html?id=13",
+    "title": "Инвестиции",
     "image": "assets/img/packs/pack_3.jpg",
     "date": "2009-10-23"
   }
