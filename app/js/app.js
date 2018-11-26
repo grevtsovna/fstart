@@ -8,7 +8,9 @@ export class App {
         this._loadApp(this.appId);
     }
     _loadApp(id) {
-        load.getJSON(`/api/apps/${id}.json`)
+        load.getJSON('/api/apps.json')
+            .then(response => {App._renderSideApps(response)})
+            .then(() => load.getJSON(`/api/apps/${id}.json`))
             .then(response => {
                 this._renderApp(response)
             }, () => {
@@ -53,5 +55,17 @@ export class App {
 
         appEl.dispatchEvent(renderedEvent);
         document.querySelector(`.o-list__link[data-id="${this.appId}"]`).classList.add('o-list__link_active');
+    }
+
+    static _renderSideApps(apps) {
+        let appElTemplate = document.querySelector('template').content.querySelector('.o-list__item');
+        apps.forEach((app) => {
+            let appEl = appElTemplate.cloneNode(true);
+            let appLinkEl = appEl.querySelector('.o-list__link');
+            appLinkEl.href = app.link;
+            appLinkEl.innerHTML = app.title;
+            appLinkEl.dataset.id = app.id;
+            document.querySelector('.o-list').appendChild(appEl);
+        });
     }
 }
