@@ -1,8 +1,11 @@
 import * as load from './load.js';
 import * as render from './render.js';
 import * as slider from './slider.js';
-import * as app from './app.js';
+import {App} from './app.js';
 import {delay as delay} from "./utils.js";
+import { Cart } from './cart.js'
+
+let cart = new Cart();
 
 if (document.querySelector('body').classList.contains('main')) {
 
@@ -19,5 +22,8 @@ if (document.querySelector('body').classList.contains('main')) {
 }
 
 if (document.querySelector('body').classList.contains('app')) {
-    let currentApp = new app.App();
+    new App();
+    document.addEventListener('appRendered', () => {
+        console.log('appRendered');
+    })
 }

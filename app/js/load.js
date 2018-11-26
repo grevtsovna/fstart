@@ -13,7 +13,6 @@ export function getJSON(url) {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
         xhr.onload = () => {
-            console.log(xhr.status);
             if (xhr.status === 200) {
                 resolve(JSON.parse(xhr.responseText));
             } else {

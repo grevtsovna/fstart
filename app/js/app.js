@@ -24,6 +24,10 @@ export class App {
         let header = data.headerText;
         let appFunctions = data.functions;
         let functionTemplate = appEl.querySelector('.o-app-info__list-item');
+        let renderedEvent = new CustomEvent('appRendered', {
+            bubbles: true,
+            detail: {id: this.appId}
+        });
         appEl.querySelector('.o-app-page__title').innerHTML = data.title;
         appEl.querySelector('.o-app-header__date').innerHTML = formatDate(date);
         appEl.querySelector('.o-app-header__licensed').innerHTML = header.licensedText;
@@ -45,6 +49,8 @@ export class App {
         if (document.querySelector('.o-list__link_active')) {
             document.querySelector('.o-list__link_active').classList.remove('o-list__link_active');
         }
+
+        appEl.dispatchEvent(renderedEvent);
         document.querySelector(`.o-list__link[data-id="${this.appId}"]`).classList.add('o-list__link_active');
     }
 }
