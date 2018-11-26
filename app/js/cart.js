@@ -22,8 +22,6 @@ export class Cart {
         this.quantity++;
         this._updateCartStick();
         localStorage.setItem('cart', JSON.stringify(this.apps));
-        // Cart.open('.o-modal');
-        console.log(this.apps);
     }
     _updateCartStick() {
         let quantityEl = this.cartStick.querySelector('.cart-stick__quantity');
