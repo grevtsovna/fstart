@@ -29,7 +29,7 @@ if (document.querySelector('body').classList.contains('app')) {
 
 function appRenderedHandler(evt) {
     document.querySelector('.js-add-to-cart').addEventListener('click', () => {
-        cart.add(evt.detail.id, 'test');
+        cart.add(evt.detail.id);
     })
 }
 function addToCartHandler() {
