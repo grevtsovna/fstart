@@ -1,20 +1,21 @@
 import { getJSON } from './load.js'
+import { delay, getRandomNumber } from './utils.js'
 
 export class Cart {
     constructor() {
         this.apps = JSON.parse(localStorage.getItem('cart')) || [];
         this.cartStick = document.querySelector('#cart-stick').content.querySelector('.cart-stick').cloneNode(true);
-        this.quantity = this.getQuantity();
+        this.quantity = this._getQuantity();
         this.cartWindow = document.querySelector('.o-modal');
-        // this.total = this.getTotal();
         document.querySelector('body').appendChild(this.cartStick);
         document.addEventListener('click', this.documentClickHandler.bind(this));
+        document.addEventListener('keydown', this.documentKeydownHandler.bind(this));
         this._updateCartStick();
     }
     add(id) {
         let appIsExists = false;
         this.apps.forEach((app) => {
-           appIsExists = app.id === id;
+           appIsExists = +app.id === +id;
            if (appIsExists) {
                app.quantity++;
            }
@@ -39,24 +40,25 @@ export class Cart {
         localStorage.setItem('cart', JSON.stringify(this.apps));
         this._updateCart();
     }
-    loadApps() {
+    _loadApps() {
         let promises = this.apps.map((app) =>  getJSON(`/api/apps/${app.id}.json`));
-        Promise.all(promises)
+        let preloader = document.querySelector('#main-tpl').content.querySelector('.preloader-chasing-squares').cloneNode(true);
+        let cartBlock = document.querySelector('.c-cart');
+        cartBlock.appendChild(preloader);
+        delay(getRandomNumber(800, 3000))
+            .then(() => Promise.all(promises))
             .then((apps) => {
+                preloader.remove();
                 this._renderCartApp(apps);
             });
     }
     _updateCart() {
-        this.quantity = this.getQuantity();
-        this.loadApps();
+        this.quantity = this._getQuantity();
+        this._loadApps();
         this._updateCartStick();
     }
     _renderCartApp(apps) {
-        if (document.querySelector('.o-cart-table')) {
-            document.querySelector('.o-cart-table').remove();
-        }
         let appsTableTemplate = document.querySelector('#main-tpl').content.querySelector('.o-cart-table');
-        console.log(appsTableTemplate);
         let appsTableEl = appsTableTemplate.cloneNode(true);
         let appRowTpl = appsTableEl.querySelector('.o-cart-row').cloneNode(true);
         let total = 0;
@@ -64,23 +66,61 @@ export class Cart {
         apps.forEach((app) => {
             let appRowEl = appRowTpl.cloneNode(true);
             let appOrderData = this._getById(app.id);
-            let totalPrice = app.price * appOrderData.quantity;
+            let totalPrice = Math.round(app.price * appOrderData.quantity * 100) / 100;
+            let removeEl = appRowEl.querySelector('.o-cart-row__remove');
+            let plusEl = appRowEl.querySelector('.c-counter-input__control_plus');
+            let minusEl = appRowEl.querySelector('.c-counter-input__control_minus');
+            let inputEl = appRowEl.querySelector('.c-counter-input__input');
             total += totalPrice;
             appRowEl.dataset.id = app.id;
             appRowEl.querySelector('.o-cart-row__img').src = app.image_sm;
             appRowEl.querySelector('.o-cart-row__title').innerHTML = app.title;
             appRowEl.querySelector('.o-cart-table__price .o-cart-row__price').innerHTML = app.price;
-            appRowEl.querySelector('.c-counter-input__input').value = appOrderData.quantity;
+            inputEl.value = appOrderData.quantity;
             appRowEl.querySelector('.o-cart-table__total .o-cart-row__price').innerHTML = totalPrice;
             appRowEl.addEventListener('click', (evt) => {
-                let removeEl = appRowEl.querySelector('.o-cart-row__remove');
                 if (evt.target === removeEl || removeEl.contains(evt.target)) {
                     this.remove(+evt.currentTarget.dataset.id);
                 }
+                if (evt.target === plusEl || plusEl.contains(evt.target)) {
+                    inputEl.value++;
+                    this.quantity++;
+                    this._getById(+evt.currentTarget.dataset.id).quantity++;
+                    this._updateCartStick();
+                    localStorage.setItem('cart', JSON.stringify(this.apps));
+                    this._updateCartPrices();
+                }
+                if (evt.target === minusEl || minusEl.contains(evt.target)) {
+                    if (inputEl.value > 1) {
+                        inputEl.value--;
+                        this.quantity--;
+                        this._getById(+evt.currentTarget.dataset.id).quantity--;
+                        this._updateCartStick();
+                        localStorage.setItem('cart', JSON.stringify(this.apps));
+                        this._updateCartPrices();
+                    }
+                }
             });
             appsTableEl.querySelector('tbody').appendChild(appRowEl);
-            document.querySelector('.c-cart').insertAdjacentElement('afterbegin', appsTableEl);
-        })
+        });
+        document.querySelector('.c-cart').insertAdjacentElement('afterbegin', appsTableEl);
+        let totals = (Math.round(total * 100) / 100).toString().split('.');
+        document.querySelector('.o-cart__integer').innerHTML = '$' + totals[0];
+        document.querySelector('.o-cart__fractional').innerHTML = totals[1];
+    }
+    _updateCartPrices() {
+        let rows = document.querySelectorAll('.o-cart-row');
+        let total = 0;
+        Array.from(rows).forEach((row) => {
+            let price = parseFloat(row.querySelector('.o-cart-table__price .o-cart-row__price').innerText);
+            let quantity = +row.querySelector('.c-counter-input__input').value;
+            let totalRow = Math.round(price * quantity * 100) / 100;
+            row.querySelector('.o-cart-table__total .o-cart-row__price').innerHTML = totalRow;
+            total += totalRow;
+        });
+        let totals = (Math.round(total * 100) / 100).toString().split('.');
+        document.querySelector('.o-cart__integer').innerHTML = '$' + totals[0];
+        document.querySelector('.o-cart__fractional').innerHTML = totals[1];
 
     }
     _updateCartStick() {
@@ -90,7 +130,7 @@ export class Cart {
             quantityEl.classList.add('cart-stick__quantity_visible');
         }
     }
-    getQuantity() {
+    _getQuantity() {
         let quantity = 0;
         this.apps.forEach(app => {
             quantity += app.quantity;
@@ -107,13 +147,18 @@ export class Cart {
         return searchedApp;
     }
     open() {
-        this.cartWindow.style.display = 'block';
-        document.querySelector('body').classList.add('u-overlay');
-        this.loadApps();
+        if (this.quantity > 0) {
+            this.cartWindow.style.display = 'block';
+            document.querySelector('body').classList.add('u-overlay');
+            this._loadApps();
+        }
     }
     close() {
         this.cartWindow.style.display = 'none';
         document.querySelector('body').classList.remove('u-overlay');
+        if (document.querySelector('.o-cart-table')) {
+            document.querySelector('.o-cart-table').remove();
+        }
     }
     documentClickHandler(evt) {
         let target = evt.target;
@@ -128,6 +173,11 @@ export class Cart {
             isCartWindow = true;
         }
         if (!isCartWindow) {
+            this.close();
+        }
+    }
+    documentKeydownHandler(evt) {
+        if (evt.key === 'Escape') {
             this.close();
         }
     }

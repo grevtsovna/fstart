@@ -2,17 +2,17 @@ import * as load from './load.js';
 import * as render from './render.js';
 import * as slider from './slider.js';
 import {App} from './app.js';
-import {delay as delay} from "./utils.js";
+import {delay, getRandomNumber} from "./utils.js";
 import { Cart } from './cart.js'
 
 let cart = new Cart();
 
 if (document.querySelector('body').classList.contains('main')) {
 
-    let preloader = document.querySelector('template').content.querySelector('.preloader-chasing-squares');
+    let preloader = document.querySelector('template').content.querySelector('.preloader-chasing-squares').cloneNode(true);
     document.querySelector('.c-packs__list').appendChild(preloader);
 
-    delay(1000)
+    delay(getRandomNumber(800, 1500))
         .then(() => load.apps())
         .then(apps => {
             render.sliderApps(apps);
